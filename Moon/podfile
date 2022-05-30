@@ -1,0 +1,20 @@
+
+platform :ios, '13.0'
+
+def netWorkPods
+  pod 'ReachabilitySwift' # Network Info Tool
+  pod 'CocoaAsyncSocket'
+  pod 'CocoaLumberjack'
+end
+
+def appPods
+    netWorkPods
+    pod 'ZKProgressHUD'
+    pod 'lottie-ios'
+end
+
+target 'Moon' do
+  use_frameworks!
+  appPods
+end
+

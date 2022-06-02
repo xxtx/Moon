@@ -18,3 +18,8 @@ target 'Moon' do
   appPods
 end
 
+target 'tunnelProvider' do
+  use_frameworks!
+  netWorkPods
+end
+ 

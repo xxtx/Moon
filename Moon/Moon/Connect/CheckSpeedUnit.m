@@ -63,13 +63,13 @@ static CheckSpeedUnit *_instance = nil;
 
 - (NSString*)stringWithbytes:(int)bytes {
     if (bytes < 1024) {
-        return [NSString stringWithFormat:@"%dB", bytes];
+        return [NSString stringWithFormat:@"%d B", bytes];
     } else if (bytes >= 1024 && bytes < 1024 * 1024) {
-        return [NSString stringWithFormat:@"%.1fKB", (double)bytes / 1024];
+        return [NSString stringWithFormat:@"%.1f KB", (double)bytes / 1024];
     } else if (bytes >= 1024 * 1024 && bytes < 1024 * 1024 * 1024) {
-        return [NSString stringWithFormat:@"%.1fMB", (double)bytes / (1024 * 1024)];
+        return [NSString stringWithFormat:@"%.1f MB", (double)bytes / (1024 * 1024)];
     } else {
-        return [NSString stringWithFormat:@"%.1fGB", (double)bytes / (1024 * 1024 * 1024)];
+        return [NSString stringWithFormat:@"%.1f GB", (double)bytes / (1024 * 1024 * 1024)];
     }
 }
 
@@ -132,14 +132,14 @@ static CheckSpeedUnit *_instance = nil;
         dSpeed = iBytes - _iBytes;
         _downloadSpeed = [[self stringWithbytes:iBytes - _iBytes] stringByAppendingString:@"/s"];
     } else {
-        _downloadSpeed = @"0b/s";
+        _downloadSpeed = @"0 b/s";
     }
     _iBytes = iBytes;
     if (_oBytes != 0) {
         uSpeed = oBytes - _oBytes;
         _uploadSpeed = [[self stringWithbytes:oBytes - _oBytes] stringByAppendingString:@"/s"];
     } else {
-        _uploadSpeed = @"0b/s";
+        _uploadSpeed = @"0 b/s";
     }
     _oBytes = oBytes;
     

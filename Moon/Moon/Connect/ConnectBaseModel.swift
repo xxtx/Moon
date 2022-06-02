@@ -11,10 +11,11 @@ import Foundation
 var isInConnectSetting = false
 
 //tunnel 本地配置
-var serverLists = [SeverModel(serverIcon: "icon_america", serverCountry: "New York", serverHost: "79.133.121.16"),
-                     SeverModel(serverIcon: "icon_america", serverCountry: "Miami", serverHost: "92.38.132.33"),
-                    SeverModel(serverIcon: "icon_england", serverCountry: "London", serverHost: "5.181.27.158"),
-                    SeverModel(serverIcon: "", serverCountry: "error country", serverHost: " ")]
+var serverLists = [SeverModel(serverIcon: "america", serverCountry: "New York", serverHost: "79.133.110.34"),
+                     SeverModel(serverIcon: "america", serverCountry: "Chicago", serverHost: "92.38.176.83"),
+                    SeverModel(serverIcon: "england", serverCountry: "London", serverHost: "45.10.58.187"),
+                    SeverModel(serverIcon: "countryerror", serverCountry: "error country", serverHost: " ")]
+
 
 class SeverModel:Codable {
     var serverIcon: String = ""

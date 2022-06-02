@@ -53,7 +53,7 @@
                                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-N6-U9h">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChQ-N6-U9h">
                                                 <rect key="frame" x="66.666666666666671" y="48" width="55" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="55" id="Uo1-yN-gDL"/>
@@ -118,7 +118,7 @@
                                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAs-vE-Bke">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAs-vE-Bke">
                                                 <rect key="frame" x="66.666666666666686" y="48" width="55" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="55" id="Vcl-vd-7kp"/>
@@ -205,17 +205,17 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sSs-Ho-88M">
                                 <rect key="frame" x="40" y="99" width="352" height="64"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_country_bg" translatesAutoresizingMaskIntoConstraints="NO" id="lgC-rI-5hL">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_country_bg" translatesAutoresizingMaskIntoConstraints="NO" id="lgC-rI-5hL">
                                         <rect key="frame" x="0.0" y="0.0" width="352" height="64"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f67-Qp-iA6">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="countrymoon" translatesAutoresizingMaskIntoConstraints="NO" id="f67-Qp-iA6">
                                         <rect key="frame" x="16" y="16" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="40b-Fk-5nG"/>
                                             <constraint firstAttribute="height" constant="32" id="YS6-qT-3tl"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCw-Ua-aFf">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart Server" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCw-Ua-aFf">
                                         <rect key="frame" x="56" y="21.666666666666671" width="260" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -263,6 +263,13 @@
                                     <action selector="btnConnectClick" destination="eXQ-NR-w3a" eventType="touchUpInside" id="Ozb-mb-9Dd"/>
                                 </connections>
                             </button>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_loading" translatesAutoresizingMaskIntoConstraints="NO" id="b68-CN-JBk">
+                                <rect key="frame" x="182" y="477.33333333333331" width="64" height="63.999999999999943"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="2yW-3m-IaJ"/>
+                                    <constraint firstAttribute="height" constant="64" id="t6A-XW-HFC"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Oe-T9-wQf">
                                 <rect key="frame" x="172" y="572.33333333333337" width="84" height="27"/>
                                 <string key="text" base64-UTF8="YES">
@@ -312,7 +319,7 @@ CENvbm5lY3Q
                                                 <rect key="frame" x="0.0" y="0.0" width="388" height="62"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <connections>
-                                                    <action selector="btnSettingClickWithSender:" destination="eXQ-NR-w3a" eventType="touchUpInside" id="8t7-cI-veG"/>
+                                                    <action selector="btnFunctionClickWithSender:" destination="eXQ-NR-w3a" eventType="touchUpInside" id="50d-gI-pGh"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yew-mO-vQr">
@@ -354,7 +361,7 @@ CENvbm5lY3Q
                                                 <rect key="frame" x="0.0" y="0.0" width="388" height="62"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <connections>
-                                                    <action selector="btnSettingClickWithSender:" destination="eXQ-NR-w3a" eventType="touchUpInside" id="dlb-ai-xdg"/>
+                                                    <action selector="btnFunctionClickWithSender:" destination="eXQ-NR-w3a" eventType="touchUpInside" id="Tdb-jP-dr0"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xQ-Z9-HUw">
@@ -396,7 +403,7 @@ CENvbm5lY3Q
                                                 <rect key="frame" x="0.0" y="0.0" width="388" height="62"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <connections>
-                                                    <action selector="btnSettingClickWithSender:" destination="eXQ-NR-w3a" eventType="touchUpInside" id="CDX-ZK-9la"/>
+                                                    <action selector="btnFunctionClickWithSender:" destination="eXQ-NR-w3a" eventType="touchUpInside" id="y3B-fx-hme"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcr-TE-1WH">
@@ -438,7 +445,7 @@ CENvbm5lY3Q
                                                 <rect key="frame" x="0.0" y="0.0" width="388" height="62"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <connections>
-                                                    <action selector="btnSettingClickWithSender:" destination="eXQ-NR-w3a" eventType="touchUpInside" id="wp2-k6-RLl"/>
+                                                    <action selector="btnFunctionClickWithSender:" destination="eXQ-NR-w3a" eventType="touchUpInside" id="FL3-2G-eXt"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tf-Hl-Nsj">
@@ -515,8 +522,10 @@ CENvbm5lY3Q
                             <constraint firstAttribute="trailing" secondItem="JdU-xC-Vcf" secondAttribute="trailing" id="Bpz-3h-w5V"/>
                             <constraint firstItem="JdU-xC-Vcf" firstAttribute="top" secondItem="CZ1-UF-dL1" secondAttribute="bottom" constant="52" id="D3q-uz-T1h"/>
                             <constraint firstItem="CZ1-UF-dL1" firstAttribute="centerY" secondItem="g9S-hZ-MvK" secondAttribute="centerY" multiplier="1.1" id="ECx-fl-KMd"/>
+                            <constraint firstItem="b68-CN-JBk" firstAttribute="centerY" secondItem="CZ1-UF-dL1" secondAttribute="centerY" id="EYc-o1-rU6"/>
                             <constraint firstItem="9KD-cA-qoV" firstAttribute="top" secondItem="g9S-hZ-MvK" secondAttribute="top" id="LI7-w0-5y0"/>
                             <constraint firstItem="9KD-cA-qoV" firstAttribute="leading" secondItem="g9S-hZ-MvK" secondAttribute="leading" id="LTP-Ha-TRg"/>
+                            <constraint firstItem="b68-CN-JBk" firstAttribute="centerX" secondItem="CZ1-UF-dL1" secondAttribute="centerX" id="R2Z-hw-Ufy"/>
                             <constraint firstItem="sSs-Ho-88M" firstAttribute="leading" secondItem="g9S-hZ-MvK" secondAttribute="leading" constant="40" id="Sso-4S-5oy"/>
                             <constraint firstItem="LhQ-Ws-ZdW" firstAttribute="centerX" secondItem="g9S-hZ-MvK" secondAttribute="centerX" id="TlX-6Q-70I"/>
                             <constraint firstAttribute="trailing" secondItem="tRJ-pe-Zp5" secondAttribute="trailing" id="Wee-wi-9MG"/>
@@ -541,9 +550,28 @@ CENvbm5lY3Q
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="connectBtn" destination="CZ1-UF-dL1" id="CiW-YU-qn9"/>
+                        <outlet property="connectingImg" destination="b68-CN-JBk" id="MtF-dX-Fxz"/>
                         <outlet property="constraintSettingBottom" destination="u04-ac-kKX" id="qwX-me-bPD"/>
+                        <outlet property="countryBG" destination="lgC-rI-5hL" id="K98-XQ-uNh"/>
+                        <outlet property="countryView" destination="sSs-Ho-88M" id="9VE-x9-gxr"/>
+                        <outlet property="downBGView" destination="fkw-iR-emX" id="goV-dA-V5N"/>
+                        <outlet property="downLine" destination="xya-gg-3QE" id="J7p-az-2ML"/>
+                        <outlet property="downSpeedLab" destination="ChQ-N6-U9h" id="pXX-75-PXP"/>
+                        <outlet property="downUnitLab" destination="mfH-Iy-YtT" id="nK0-zj-sVz"/>
+                        <outlet property="imgBG" destination="9KD-cA-qoV" id="8dX-ff-ukb"/>
                         <outlet property="lightImgv" destination="LhQ-Ws-ZdW" id="wcI-4o-H8V"/>
+                        <outlet property="logoLab" destination="mmW-kG-gxM" id="02N-nn-DpO"/>
+                        <outlet property="selCountryImg" destination="f67-Qp-iA6" id="sgg-tf-13G"/>
+                        <outlet property="selCountryLab" destination="BCw-Ua-aFf" id="IFz-5d-KDo"/>
+                        <outlet property="selImg" destination="rFG-h7-cZK" id="fTE-jf-0SG"/>
+                        <outlet property="settingBtn" destination="jCp-mg-juk" id="nic-Fg-gZO"/>
                         <outlet property="settingCoverView" destination="tWU-Df-SND" id="egQ-Rm-LbN"/>
+                        <outlet property="stateLab" destination="7Oe-T9-wQf" id="zZJ-Yn-dsE"/>
+                        <outlet property="upBGView" destination="gtW-cu-YkN" id="fmM-eF-N8t"/>
+                        <outlet property="upLine" destination="GnU-kB-KGc" id="YL8-44-6z1"/>
+                        <outlet property="upSpeedLab" destination="UAs-vE-Bke" id="PcQ-bf-k72"/>
+                        <outlet property="upUnitLab" destination="fe1-Nw-jdS" id="5qu-T6-pE4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7eR-5U-m1O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -566,6 +594,9 @@ CENvbm5lY3Q
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="icon_back"/>
+                                <connections>
+                                    <action selector="backClick" destination="4Ye-dr-tJ8" eventType="touchUpInside" id="6gi-Ms-cV9"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected Successful!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X41-KB-6jj">
                                 <rect key="frame" x="112.66666666666669" y="358.33333333333331" width="203" height="24"/>
@@ -585,7 +616,7 @@ CENvbm5lY3Q
                                     <constraint firstAttribute="width" secondItem="ye1-KN-OsL" secondAttribute="height" multiplier="186:421" id="Sgp-go-hhf"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUf-z5-AGs">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUf-z5-AGs">
                                 <rect key="frame" x="80" y="444" width="268" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.42352941176470588" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -597,10 +628,13 @@ CENvbm5lY3Q
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="22"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="connectClick" destination="4Ye-dr-tJ8" eventType="touchUpInside" id="c59-cq-oDs"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wfv-UN-pY0"/>
@@ -621,6 +655,12 @@ CENvbm5lY3Q
                             <constraint firstItem="X41-KB-6jj" firstAttribute="centerX" secondItem="3gC-gi-VWe" secondAttribute="centerX" id="xT6-gE-nVT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="connectBtn" destination="gUf-z5-AGs" id="FNz-FU-Nv9"/>
+                        <outlet property="descLab" destination="WP4-Va-yca" id="G78-BS-JCM"/>
+                        <outlet property="stateImg" destination="ye1-KN-OsL" id="lz1-E7-jRz"/>
+                        <outlet property="stateLab" destination="X41-KB-6jj" id="YXo-G2-Aey"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GxM-0x-XJE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -644,12 +684,14 @@ CENvbm5lY3Q
     </scenes>
     <resources>
         <image name="connectedLight" width="186" height="421"/>
+        <image name="countrymoon" width="36" height="36"/>
         <image name="icon_Download" width="18" height="18"/>
         <image name="icon_Upload" width="18" height="18"/>
         <image name="icon_back" width="20" height="20"/>
         <image name="icon_btn_blue" width="110" height="110"/>
         <image name="icon_go_right" width="16" height="16"/>
         <image name="icon_go_right_b" width="20" height="20"/>
+        <image name="icon_loading" width="64" height="64"/>
         <image name="icon_setting" width="36" height="36"/>
         <image name="img_country_bg" width="300" height="64"/>
         <image name="img_main_bg" width="375" height="812"/>

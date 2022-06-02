@@ -125,8 +125,8 @@ class ConnectManager: NSObject {
             }
             
             let tunnelProtocol = NETunnelProviderProtocol()
-            tunnelProtocol.serverAddress = "SpeedTunnel"
-            tunnelProtocol.providerBundleIdentifier = "com.demo.ofzy.SpeedTunnel.SpeedTunnelNetWork"
+            tunnelProtocol.serverAddress = "Moon"
+            tunnelProtocol.providerBundleIdentifier = "com.zytest.moonios.Moon.tunnelProvider"
             let rule = NEOnDemandRuleConnect()
             rule.interfaceTypeMatch = .any
             self.providerManager?.protocolConfiguration = tunnelProtocol
@@ -170,7 +170,7 @@ class ConnectManager: NSObject {
                 return
             }
             do {
-                try self.providerManager?.connection.startVPNTunnel(options: ["host":NSString(string:   server.serverHost),"port":"1206","method":"chacha20-ietf-poly1305","password":"S9E9Tx5P6Y(Kp_pm"])
+                try self.providerManager?.connection.startVPNTunnel(options: ["host":NSString(string:   server.serverHost),"port":"6435","method":"chacha20-ietf-poly1305","password":"ZbRYZSaG_(dab76r"])
                 ShowLog("[tunnel] host : \(server.serverHost)")
             } catch let e {
                 ShowLog("[tunnel] connect error: \(e.localizedDescription)")

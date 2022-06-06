@@ -62,7 +62,9 @@ static CheckSpeedUnit *_instance = nil;
 }
 
 - (NSString*)stringWithbytes:(int)bytes {
-    if (bytes < 1024) {
+    if (bytes < 0){
+        return [NSString stringWithFormat:@"0.0 B"];
+    }else if (bytes < 1024) {
         return [NSString stringWithFormat:@"%d B", bytes];
     } else if (bytes >= 1024 && bytes < 1024 * 1024) {
         return [NSString stringWithFormat:@"%.1f KB", (double)bytes / 1024];

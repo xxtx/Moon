@@ -142,7 +142,6 @@ class ConnectManager: NSObject {
                     return
                 }
                 if self.hasNetworkProvider == false{
-                    self.hasNetworkProvider = true
 //                    MainFBLog.logEvent(.smartAthB)
                 }
                 self.hasNetworkProvider = true

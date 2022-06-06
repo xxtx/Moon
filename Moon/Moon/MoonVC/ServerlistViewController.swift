@@ -13,7 +13,8 @@ class ServerlistViewController:UIViewController, UITableViewDelegate, UITableVie
         return .darkContent
     }
     
-    var selectIndex:Int?
+    var connectState:ConnectState?
+    var selectIndex:Int = 0
     var selcctHandle:((Int) -> Void)?
     
     override func viewDidLoad() {
@@ -58,7 +59,7 @@ class ServerlistViewController:UIViewController, UITableViewDelegate, UITableVie
             cell.countryImg.image = UIImage(named: serverLists[indexPath.row - 1].serverIcon)
             cell.countryLab.text = serverLists[indexPath.row - 1].serverCountry
         }
-        if let selIndex = selectIndex, selIndex == indexPath.row{
+        if selectIndex == indexPath.row, connectState == .connected{
             cell.selectImg.image = UIImage(named: "selectServer")
         }
         else{
@@ -68,6 +69,7 @@ class ServerlistViewController:UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if connectState == .connected , selectIndex == indexPath.row {return}
         self.selcctHandle?(indexPath.row)
         self.navigationController?.popViewController(animated: true)
     }
@@ -113,6 +115,7 @@ class serverListItem:UITableViewCell{
     override func layoutSubviews() {
         super.layoutSubviews()
         self.backgroundColor = UIColor(rgb: 0xf9f9f9)
+        self.selectionStyle = .none
         
         self.addSubview(contentwhiteView)
         contentwhiteView.addSubview(countryImg)

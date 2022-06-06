@@ -59,18 +59,16 @@ class MainPageViewController:UIViewController{
             }
         }
     }
-    private var choiceServerIndex:Int?{
+    private var choiceServerIndex:Int = 0{
         didSet{
-            if let selI = choiceServerIndex{
-                if selI == 0{
-                    selCountryImg.image = UIImage(named: "countrymoon")
-                    selCountryLab.text = "Smart Server"
-                }
-                else{
-                    let tunnelM = serverLists[selI - 1]
-                    selCountryImg.image = UIImage(named: tunnelM.serverIcon)
-                    selCountryLab.text = tunnelM.serverCountry
-                }
+            if choiceServerIndex == 0{
+                selCountryImg.image = UIImage(named: "countrymoon")
+                selCountryLab.text = "Smart Server"
+            }
+            else{
+                let tunnelM = serverLists[choiceServerIndex - 1]
+                selCountryImg.image = UIImage(named: tunnelM.serverIcon)
+                selCountryLab.text = tunnelM.serverCountry
             }
         }
     }
@@ -128,12 +126,13 @@ class MainPageViewController:UIViewController{
         if connectState == .connecting || connectState == .disConnecting || connectState == .reConnecting{ return }
         let vc = ServerlistViewController.init()
         vc.selectIndex = choiceServerIndex
+        vc.connectState = connectState
         vc.selcctHandle = { [weak self] selIndex in
             self?.choiceServerIndex = selIndex
             if self?.connectState == .connected{
                 self?.isServerListsBackReconnect = true
-                self?.connectState = .connecting
                 ConnectManager.shareInstance.disconnectServer()
+                self?.connectState = .connecting
             }
             else{
                 self?.connectServer()
@@ -178,27 +177,31 @@ class MainPageViewController:UIViewController{
     
     
     private func connectServer(){
-        let netContent = try! Reachability()
-        if netContent.connection == .unavailable {
-            ZKProgressHUD.showInfo("No network connection.")
-            ShowLog("[tunnel] No network connection.")
-            self.connectState = .disConnected
-            return
+        if ConnectManager.shareInstance.hasNetworkProvider{
+            self.connectState = .connecting
         }
-        
-        self.connectState = .connecting
         ConnectManager.shareInstance.setupServerProvider {
+            if self.connectState != .connecting{
+                self.connectState = .connecting
+            }
+            let netContent = try! Reachability()
+            if netContent.connection == .unavailable {
+                ZKProgressHUD.showInfo("No network connection.")
+                ShowLog("[tunnel] No network connection.")
+                self.connectState = .disConnected
+                return
+            }
             var serverTestLists:[SeverModel] = []
-            if self.choiceServerIndex == nil || self.choiceServerIndex == 0 {
+            if self.choiceServerIndex == 0 {
                 serverTestLists = serverLists
             }
             else{
-                serverTestLists = [serverLists[self.choiceServerIndex! - 1]]
+                serverTestLists = [serverLists[self.choiceServerIndex - 1]]
             }
             SpeedTestManager.shareInstance.testServerList(serverTestLists) { [weak self] serversSorted in
                 if serversSorted.count > 0 {
                     self?.serverRandom = serversSorted[Int(arc4random()) % serversSorted.count]
-                    if inForeGround {
+                    if isInForeGround {
                         ConnectManager.shareInstance.connectServer(self!.serverRandom!)
                     }
                     else{
@@ -216,8 +219,10 @@ class MainPageViewController:UIViewController{
     
     private func disconnectServer(){
         self.connectState = .disConnecting
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
-            ConnectManager.shareInstance.disconnectServer()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if isInForeGround{
+                ConnectManager.shareInstance.disconnectServer()
+            }
         }
     }
     
@@ -231,7 +236,6 @@ class MainPageViewController:UIViewController{
                         self.showResultVC(false)
                     }
                     else{
-                        self.connectState = .connecting
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                             ConnectManager.shareInstance.hasConnectFirst = true
                         }
@@ -248,7 +252,7 @@ class MainPageViewController:UIViewController{
             case .noNetwork:
                 self.connectState = .disConnected
                 ZKProgressHUD.showInfo("No network connection.")
-            case .error, .waitConnect:
+            case .error:
                 self.connectState = .disConnected
                 ZKProgressHUD.showInfo("Connection failed. Try again.")
             
@@ -445,19 +449,22 @@ class MainPageViewController:UIViewController{
         
         switch sender.tag {
         case 0:
-            break
+            let urlStr = "itms-apps://itunes.apple.com/app/id00000000?action=write-review"
+            UIApplication.shared.open(URL(string: urlStr)!, options: [:])
         case 1:
-            UIApplication.shared.open(URL.init(string: "https://apps.apple.com/us/app/id")!, options: [:])
-            break
+            let params = [
+                UIImage(named: "sharelogo")!,
+                URL(string: "https://apps.apple.com/us/app/id00000000")!
+            ] as [Any]
+            let activity = UIActivityViewController(activityItems: params, applicationActivities: nil)
+            present(activity, animated: true, completion: nil)
         case 2:
             let vc = RullsViewController.init()
             self.navigationController?.pushViewController(vc, animated: true)
-            break
         case 3:
             let vc = RullsViewController.init()
             vc.isTerms = false
             self.navigationController?.pushViewController(vc, animated: true)
-            break
         default:
             break
         }

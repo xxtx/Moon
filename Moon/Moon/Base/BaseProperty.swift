@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 
-var inForeGround = true              //是否在前台
 
 let MainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
 let MainScene = UIApplication.shared.connectedScenes.first!.delegate as! SceneDelegate

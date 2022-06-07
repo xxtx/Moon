@@ -223,6 +223,10 @@ class MainPageViewController:UIViewController{
             if isInForeGround{
                 ConnectManager.shareInstance.disconnectServer()
             }
+            else{
+                ShowLog("enter background, cannot disconnect ")
+                self.connectState = .connected
+            }
         }
     }
     

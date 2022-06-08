@@ -453,12 +453,12 @@ class MainPageViewController:UIViewController{
         
         switch sender.tag {
         case 0:
-            let urlStr = "itms-apps://itunes.apple.com/app/id00000000?action=write-review"
+            let urlStr = "itms-apps://itunes.apple.com/app/id1628322220?action=write-review"
             UIApplication.shared.open(URL(string: urlStr)!, options: [:])
         case 1:
             let params = [
                 UIImage(named: "sharelogo")!,
-                URL(string: "https://apps.apple.com/us/app/id00000000")!
+                URL(string: "https://apps.apple.com/us/app/id1628322220")!
             ] as [Any]
             let activity = UIActivityViewController(activityItems: params, applicationActivities: nil)
             present(activity, animated: true, completion: nil)

@@ -11,6 +11,11 @@ def appPods
     netWorkPods
     pod 'ZKProgressHUD'
     pod 'lottie-ios'
+    pod 'Firebase/Analytics'
+    pod 'Firebase/Crashlytics'
+    pod 'Firebase/RemoteConfig'
+    pod 'Google-Mobile-Ads-SDK'
+    pod 'FBSDKCoreKit'
 end
 
 target 'Moon' do

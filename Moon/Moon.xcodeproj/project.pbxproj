@@ -39,6 +39,7 @@
 		465DE83D28449B860001EB48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465DE83B28449B860001EB48 /* Main.storyboard */; };
 		465DE83F28449B880001EB48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 465DE83E28449B880001EB48 /* Assets.xcassets */; };
 		465DE84228449B880001EB48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465DE84028449B880001EB48 /* LaunchScreen.storyboard */; };
+		469D92D128507F7300CB88E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 469D92D028507F7300CB88E6 /* GoogleService-Info.plist */; };
 		6B632E07FC985B7B2A652F17 /* Pods_tunnelProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E389A37E8E820A2DC0D42DB5 /* Pods_tunnelProvider.framework */; };
 		8A174CBB4BB4FF5945614DC8 /* Pods_Moon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E88887CF121905F2C8C439 /* Pods_Moon.framework */; };
 /* End PBXBuildFile section */
@@ -123,6 +124,7 @@
 		465DE83E28449B880001EB48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		465DE84128449B880001EB48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		465DE84328449B880001EB48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		469D92D028507F7300CB88E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68701C3761826E147D0240A3 /* Pods-tunnelProvider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tunnelProvider.debug.xcconfig"; path = "Target Support Files/Pods-tunnelProvider/Pods-tunnelProvider.debug.xcconfig"; sourceTree = "<group>"; };
 		D601D78F034D5329B1D61040 /* Pods-Moon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moon.debug.xcconfig"; path = "Target Support Files/Pods-Moon/Pods-Moon.debug.xcconfig"; sourceTree = "<group>"; };
 		E389A37E8E820A2DC0D42DB5 /* Pods_tunnelProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tunnelProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				465DE83E28449B880001EB48 /* Assets.xcassets */,
+				469D92D028507F7300CB88E6 /* GoogleService-Info.plist */,
 				460F2212284760E9006099D8 /* disconnectingAni.json */,
 				460F220B28471549006099D8 /* connectingAni.json */,
 				462FFD122848C0C800AFBEC3 /* downloadAni.json */,
@@ -387,6 +390,7 @@
 				462FFD152848C0D500AFBEC3 /* uploadAni.json in Resources */,
 				462FFD132848C0C800AFBEC3 /* downloadAni.json in Resources */,
 				460F220C28471549006099D8 /* connectingAni.json in Resources */,
+				469D92D128507F7300CB88E6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

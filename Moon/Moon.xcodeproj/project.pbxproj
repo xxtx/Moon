@@ -12,7 +12,6 @@
 		460F22082845BAEA006099D8 /* BaseProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F22072845BAEA006099D8 /* BaseProperty.swift */; };
 		460F220A28461C51006099D8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F220928461C51006099D8 /* MainPageViewController.swift */; };
 		460F220C28471549006099D8 /* connectingAni.json in Resources */ = {isa = PBXBuildFile; fileRef = 460F220B28471549006099D8 /* connectingAni.json */; };
-		460F220E28471550006099D8 /* disconnectingAni.json in Resources */ = {isa = PBXBuildFile; fileRef = 460F220D28471550006099D8 /* disconnectingAni.json */; };
 		460F22102847439F006099D8 /* ResultPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F220F2847439F006099D8 /* ResultPageViewController.swift */; };
 		460F221528476145006099D8 /* ConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F221428476145006099D8 /* ConnectManager.swift */; };
 		460F22172847617C006099D8 /* SpeedTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460F22162847617C006099D8 /* SpeedTestManager.swift */; };
@@ -88,7 +87,6 @@
 		460F22072845BAEA006099D8 /* BaseProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProperty.swift; sourceTree = "<group>"; };
 		460F220928461C51006099D8 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		460F220B28471549006099D8 /* connectingAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = connectingAni.json; sourceTree = "<group>"; };
-		460F220D28471550006099D8 /* disconnectingAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = disconnectingAni.json; path = "../../../../../Downloads/动效(2)/2/disconnectingAni.json"; sourceTree = "<group>"; };
 		460F220F2847439F006099D8 /* ResultPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPageViewController.swift; sourceTree = "<group>"; };
 		460F2212284760E9006099D8 /* disconnectingAni.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = disconnectingAni.json; sourceTree = "<group>"; };
 		460F221428476145006099D8 /* ConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectManager.swift; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 				465DE84328449B880001EB48 /* Info.plist */,
 				460F22052844A249006099D8 /* BaseNavigationController.swift */,
 				460F22072845BAEA006099D8 /* BaseProperty.swift */,
-				460F220D28471550006099D8 /* disconnectingAni.json */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -387,7 +384,6 @@
 				465DE84228449B880001EB48 /* LaunchScreen.storyboard in Resources */,
 				465DE83F28449B880001EB48 /* Assets.xcassets in Resources */,
 				465DE83D28449B860001EB48 /* Main.storyboard in Resources */,
-				460F220E28471550006099D8 /* disconnectingAni.json in Resources */,
 				462FFD152848C0D500AFBEC3 /* uploadAni.json in Resources */,
 				462FFD132848C0C800AFBEC3 /* downloadAni.json in Resources */,
 				460F220C28471549006099D8 /* connectingAni.json in Resources */,

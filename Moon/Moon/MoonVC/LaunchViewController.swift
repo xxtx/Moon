@@ -7,13 +7,18 @@
 
 import Foundation
 import UIKit
+import GoogleMobileAds
 
 class LaunchViewController:UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .darkContent
     }
     
-    private var lauchTime:TimeInterval?
+    private var lauchTime:TimeInterval? //记录已经展示的loading时长
+    private var isInhome = false        //是否已经进入主页
+    private var isShowAd = false        //是否正在展示广告
+    private var currInterAD:GadInterstitialLoadedModel?  //正在展示的广告
+    private var adUserClickCount = 0
     
     lazy var moonLogo:UIImageView = {
         let img = UIImageView(image: UIImage(named: "lauch_logo"))
@@ -39,6 +44,10 @@ class LaunchViewController:UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         makeLoadingView()
+        
+        GadInterstitialLoader.shared.requesAdOf(.connectAD, completeHandler: nil)
+        GadNativeLoader.shared.requesAdOf(.homeAD, completeHandler: nil)
+        GadNativeLoader.shared.requesAdOf(.resultAD, completeHandler: nil)
     }
     
     private func makeLoadingView(){
@@ -49,13 +58,21 @@ class LaunchViewController:UIViewController {
         lauchTime = Date().timeIntervalSince1970
         launchInTime()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(arc4random()%5 + 1)) {
-            self.launchInTime(1.3)
+        GadInterstitialLoader.shared.requesAdOf(.loadingAD, completeHandler: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.3) {
+            GadInterstitialLoader.shared.checkInterstitialAdOf(.loadingAD) { isSuccess in
+                self.launchInTime(1.1)
+                if isSuccess{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.showLoadingAD()
+                    }
+                }
+            }
         }
     }
     
     //加载进度，默认15秒
-    func launchInTime(_ timeI:TimeInterval = 15){
+    private func launchInTime(_ timeI:TimeInterval = 15){
         if let startTime = lauchTime{
             progressView.layer.removeAllAnimations()
             progressView.frame.size.width = (SCREENW - 156) * (Date().timeIntervalSince1970 - startTime - 0.5) / 15
@@ -64,9 +81,70 @@ class LaunchViewController:UIViewController {
             self.progressView.frame.size.width = SCREENW - 156
         } completion: { isFinish in
             if isFinish{
-                MainScene.showMainPage()
+                self.showHomePage()
             }
-
         }
+    }
+    
+    private func showHomePage(){
+        if !isShowAd, !isInhome{
+            isInhome = true
+            MainScene.showMainPage()
+        }
+    }
+}
+
+extension LaunchViewController:GADFullScreenContentDelegate{
+    
+    private func showLoadingAD(){
+        if let ad = GadInterstitialLoader.shared.arrLoadingAdLoaded.first, !isInhome, self.viewIfLoaded?.window != nil, isInForeGround, GoogleADManager.shared.isUserCanShowAd(){
+            self.currInterAD = ad
+            self.isShowAd = true
+            do {
+                try self.currInterAD?.adloaded.canPresent(fromRootViewController: self)
+                self.currInterAD?.adloaded.fullScreenContentDelegate = self
+                self.currInterAD?.adloaded.present(fromRootViewController: self)
+            } catch let e {
+                ShowLog("[AD] \(InterstitialAdType.loadingAD.rawValue) 广告展示失败 \(e.localizedDescription)")
+                self.isShowAd = false
+                self.showHomePage()
+            }
+            if GadInterstitialLoader.shared.arrLoadingAdLoaded.count > 0{
+                GadInterstitialLoader.shared.arrLoadingAdLoaded.removeFirst()
+            }
+        }
+    }
+    
+    func adDidRecordClick(_ ad: GADFullScreenPresentingAd) {
+        GoogleADManager.shared.addUserClickCount()
+        adUserClickCount += 1
+        if adUserClickCount >= 2 {
+            UserDefaults.standard.setValue(Date().timeIntervalSince1970, forKey: KeyOfUserMalignant)
+            if let vc = self.presentedViewController {
+                vc.dismiss(animated: false, completion: nil)
+            }
+            self.isShowAd = false
+            self.showHomePage()
+        }
+    }
+    
+    func adDidRecordImpression(_ ad: GADFullScreenPresentingAd) {
+        adUserClickCount = 0
+    }
+
+    func adWillPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        ShowLog("[AD] \(InterstitialAdType.loadingAD.rawValue) 广告展示 ID:\(self.currInterAD?.adIdentifier ?? "null"), level: \(self.currInterAD?.adOrder ?? 0)")
+        GoogleADManager.shared.addUserShowCount()
+    }
+    
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        self.isShowAd = false
+        self.showHomePage()
+    }
+    
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        ShowLog("[AD] \(InterstitialAdType.loadingAD.rawValue) 广告展示失败")
+        self.isShowAd = false
+        self.showHomePage()
     }
 }

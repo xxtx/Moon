@@ -38,6 +38,7 @@ class ServerlistViewController:UIViewController, UITableViewDelegate, UITableVie
     
     @objc func backClick(){
         self.navigationController?.popViewController(animated: true)
+        NotificationCenter.default.post(name: notiNameShowBackAD, object: nil)
     }
     
     ///tableview

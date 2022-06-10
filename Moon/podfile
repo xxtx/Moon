@@ -16,6 +16,7 @@ def appPods
     pod 'Firebase/RemoteConfig'
     pod 'Google-Mobile-Ads-SDK'
     pod 'FBSDKCoreKit'
+    pod 'SnapKit'
 end
 
 target 'Moon' do

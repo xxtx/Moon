@@ -30,10 +30,18 @@
 		460F224428488FE5006099D8 /* PacketProcessor_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460F224028488FCE006099D8 /* PacketProcessor_iOS.framework */; };
 		460F224528488FE5006099D8 /* PacketProcessor_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 460F224028488FCE006099D8 /* PacketProcessor_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		460F224728488FE8006099D8 /* Shadowsocks_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460F224128488FCE006099D8 /* Shadowsocks_iOS.framework */; };
+		462F300428508F8A00D80599 /* GoogleADConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F300328508F8A00D80599 /* GoogleADConfig.swift */; };
+		462F300628509E2800D80599 /* GadInterstitialLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F300528509E2800D80599 /* GadInterstitialLoader.swift */; };
+		462F300828509E3E00D80599 /* GadNativeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F300728509E3E00D80599 /* GadNativeLoader.swift */; };
+		462F300A28509E8000D80599 /* HomeADView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F300928509E8000D80599 /* HomeADView.swift */; };
+		462F300C28509E9B00D80599 /* ResultADView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462F300B28509E9B00D80599 /* ResultADView.swift */; };
 		462FFD0F2848989500AFBEC3 /* ServerlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FFD0E2848989500AFBEC3 /* ServerlistViewController.swift */; };
 		462FFD11284898CC00AFBEC3 /* RullsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FFD10284898CC00AFBEC3 /* RullsViewController.swift */; };
 		462FFD132848C0C800AFBEC3 /* downloadAni.json in Resources */ = {isa = PBXBuildFile; fileRef = 462FFD122848C0C800AFBEC3 /* downloadAni.json */; };
 		462FFD152848C0D500AFBEC3 /* uploadAni.json in Resources */ = {isa = PBXBuildFile; fileRef = 462FFD142848C0D500AFBEC3 /* uploadAni.json */; };
+		464261AE2852110000982E34 /* admobConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 464261AD2852110000982E34 /* admobConfig.json */; };
+		464261B02853135500982E34 /* MainPageViewController+AD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464261AF2853135500982E34 /* MainPageViewController+AD.swift */; };
+		464261B2285340AE00982E34 /* 匹配中.json in Resources */ = {isa = PBXBuildFile; fileRef = 464261B1285340AE00982E34 /* 匹配中.json */; };
 		465DE83628449B860001EB48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465DE83528449B860001EB48 /* AppDelegate.swift */; };
 		465DE83828449B860001EB48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465DE83728449B860001EB48 /* SceneDelegate.swift */; };
 		465DE83D28449B860001EB48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465DE83B28449B860001EB48 /* Main.storyboard */; };
@@ -113,10 +121,18 @@
 		460F223E28488F59006099D8 /* Moon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moon.entitlements; sourceTree = "<group>"; };
 		460F224028488FCE006099D8 /* PacketProcessor_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PacketProcessor_iOS.framework; sourceTree = "<group>"; };
 		460F224128488FCE006099D8 /* Shadowsocks_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Shadowsocks_iOS.framework; sourceTree = "<group>"; };
+		462F300328508F8A00D80599 /* GoogleADConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleADConfig.swift; sourceTree = "<group>"; };
+		462F300528509E2800D80599 /* GadInterstitialLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadInterstitialLoader.swift; sourceTree = "<group>"; };
+		462F300728509E3E00D80599 /* GadNativeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GadNativeLoader.swift; sourceTree = "<group>"; };
+		462F300928509E8000D80599 /* HomeADView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeADView.swift; sourceTree = "<group>"; };
+		462F300B28509E9B00D80599 /* ResultADView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultADView.swift; sourceTree = "<group>"; };
 		462FFD0E2848989500AFBEC3 /* ServerlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerlistViewController.swift; sourceTree = "<group>"; };
 		462FFD10284898CC00AFBEC3 /* RullsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RullsViewController.swift; sourceTree = "<group>"; };
 		462FFD122848C0C800AFBEC3 /* downloadAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = downloadAni.json; sourceTree = "<group>"; };
 		462FFD142848C0D500AFBEC3 /* uploadAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uploadAni.json; sourceTree = "<group>"; };
+		464261AD2852110000982E34 /* admobConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = admobConfig.json; sourceTree = "<group>"; };
+		464261AF2853135500982E34 /* MainPageViewController+AD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainPageViewController+AD.swift"; sourceTree = "<group>"; };
+		464261B1285340AE00982E34 /* 匹配中.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "匹配中.json"; sourceTree = "<group>"; };
 		465DE83228449B860001EB48 /* Moon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		465DE83528449B860001EB48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		465DE83728449B860001EB48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +189,8 @@
 			children = (
 				465DE83E28449B880001EB48 /* Assets.xcassets */,
 				469D92D028507F7300CB88E6 /* GoogleService-Info.plist */,
+				464261B1285340AE00982E34 /* 匹配中.json */,
+				464261AD2852110000982E34 /* admobConfig.json */,
 				460F2212284760E9006099D8 /* disconnectingAni.json */,
 				460F220B28471549006099D8 /* connectingAni.json */,
 				462FFD122848C0C800AFBEC3 /* downloadAni.json */,
@@ -213,6 +231,18 @@
 			path = tunnelProvider;
 			sourceTree = "<group>";
 		};
+		462F300228508F6F00D80599 /* GoogleAD */ = {
+			isa = PBXGroup;
+			children = (
+				462F300528509E2800D80599 /* GadInterstitialLoader.swift */,
+				462F300728509E3E00D80599 /* GadNativeLoader.swift */,
+				462F300328508F8A00D80599 /* GoogleADConfig.swift */,
+				462F300928509E8000D80599 /* HomeADView.swift */,
+				462F300B28509E9B00D80599 /* ResultADView.swift */,
+			);
+			path = GoogleAD;
+			sourceTree = "<group>";
+		};
 		465DE82928449B860001EB48 = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +271,7 @@
 				465DE84928449F270001EB48 /* Base */,
 				465DE84B28449F7C0001EB48 /* LauchVC */,
 				465DE84C28449FB20001EB48 /* MoonVC */,
+				462F300228508F6F00D80599 /* GoogleAD */,
 				460F2213284760FC006099D8 /* Connect */,
 			);
 			path = Moon;
@@ -272,6 +303,7 @@
 				465DE83B28449B860001EB48 /* Main.storyboard */,
 				460F22032844A13E006099D8 /* LaunchViewController.swift */,
 				460F220928461C51006099D8 /* MainPageViewController.swift */,
+				464261AF2853135500982E34 /* MainPageViewController+AD.swift */,
 				460F220F2847439F006099D8 /* ResultPageViewController.swift */,
 				462FFD0E2848989500AFBEC3 /* ServerlistViewController.swift */,
 				462FFD10284898CC00AFBEC3 /* RullsViewController.swift */,
@@ -388,7 +420,9 @@
 				465DE83F28449B880001EB48 /* Assets.xcassets in Resources */,
 				465DE83D28449B860001EB48 /* Main.storyboard in Resources */,
 				462FFD152848C0D500AFBEC3 /* uploadAni.json in Resources */,
+				464261B2285340AE00982E34 /* 匹配中.json in Resources */,
 				462FFD132848C0C800AFBEC3 /* downloadAni.json in Resources */,
+				464261AE2852110000982E34 /* admobConfig.json in Resources */,
 				460F220C28471549006099D8 /* connectingAni.json in Resources */,
 				469D92D128507F7300CB88E6 /* GoogleService-Info.plist in Resources */,
 			);
@@ -479,15 +513,21 @@
 				462FFD0F2848989500AFBEC3 /* ServerlistViewController.swift in Sources */,
 				460F22172847617C006099D8 /* SpeedTestManager.swift in Sources */,
 				462FFD11284898CC00AFBEC3 /* RullsViewController.swift in Sources */,
+				462F300C28509E9B00D80599 /* ResultADView.swift in Sources */,
 				460F22102847439F006099D8 /* ResultPageViewController.swift in Sources */,
+				462F300628509E2800D80599 /* GadInterstitialLoader.swift in Sources */,
+				462F300A28509E8000D80599 /* HomeADView.swift in Sources */,
 				465DE83628449B860001EB48 /* AppDelegate.swift in Sources */,
 				460F22062844A249006099D8 /* BaseNavigationController.swift in Sources */,
 				460F22212847663E006099D8 /* PingManager.m in Sources */,
 				460F221528476145006099D8 /* ConnectManager.swift in Sources */,
 				465DE83828449B860001EB48 /* SceneDelegate.swift in Sources */,
+				464261B02853135500982E34 /* MainPageViewController+AD.swift in Sources */,
 				460F222328476FB3006099D8 /* ConnectBaseModel.swift in Sources */,
 				460F22202847663E006099D8 /* SimplePing.m in Sources */,
 				460F221F2847663E006099D8 /* CheckSpeedUnit.m in Sources */,
+				462F300828509E3E00D80599 /* GadNativeLoader.swift in Sources */,
+				462F300428508F8A00D80599 /* GoogleADConfig.swift in Sources */,
 				460F220A28461C51006099D8 /* MainPageViewController.swift in Sources */,
 				460F22082845BAEA006099D8 /* BaseProperty.swift in Sources */,
 			);

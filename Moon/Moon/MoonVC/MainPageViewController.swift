@@ -10,6 +10,8 @@ import UIKit
 import Lottie
 import Reachability
 import ZKProgressHUD
+import AppTrackingTransparency
+import GoogleMobileAds
 
 class MainPageViewController:UIViewController{
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -42,6 +44,7 @@ class MainPageViewController:UIViewController{
     @IBOutlet weak var upBGView:UIView!
     @IBOutlet weak var downLine:UIView!
     @IBOutlet weak var upLine:UIView!
+    @IBOutlet weak var adBGView:UIView!
     
     private var isServerListsBackReconnect = false
     private var serverRandom:SeverModel? //随机连接一个ping通服务器
@@ -92,6 +95,15 @@ class MainPageViewController:UIViewController{
         return animationView
     }()
     
+    //广告相关
+    var currConnectAD:GadInterstitialLoadedModel?   //正在展示的连接广告
+    var currBackAD:GadInterstitialLoadedModel?      //正在展示的返回广告
+    var isToResultVC = false                        //广告结束是否前往结果页
+    var adUserClickCount = 0
+    
+    var mainhomeAdShowTime:TimeInterval?
+    lazy var homeAdView = HomeADView.init(frame: CGRect(x: 0, y: 0, width: SCREENW - 40, height: 68))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
@@ -107,7 +119,21 @@ class MainPageViewController:UIViewController{
                 self.connectState = .connected
             }
         }
+        
+        adBGView.addSubview(self.homeAdView)
         setConnectManagerHandle()
+        
+        if #available(iOS 14.0, *){
+            ATTrackingManager.requestTrackingAuthorization { state in
+                ShowLog("[AD] appTracking -- \(state.rawValue)")
+            }
+        }
+        
+        NotificationCenter.default.addObserver(forName: notiNameShowBackAD, object: nil, queue: .main) {[weak self] noti in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self?.showBackHomeAD()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -120,6 +146,10 @@ class MainPageViewController:UIViewController{
         if connectState == .connected{
             changeSpeedByte(true)
         }
+        GadInterstitialLoader.shared.requesAdOf(.connectAD, completeHandler: nil)
+        GadNativeLoader.shared.requesAdOf(.homeAD, completeHandler: nil)
+        GadNativeLoader.shared.requesAdOf(.resultAD, completeHandler: nil)
+        self.requstHomeAD()
     }
     
     @objc func choiceCountry(){
@@ -180,41 +210,49 @@ class MainPageViewController:UIViewController{
         if ConnectManager.shareInstance.hasNetworkProvider{
             self.connectState = .connecting
         }
-        ConnectManager.shareInstance.setupServerProvider {
-            if self.connectState != .connecting{
-                self.connectState = .connecting
-            }
-            let netContent = try! Reachability()
-            if netContent.connection == .unavailable {
-                ZKProgressHUD.showInfo("No network connection.")
-                ShowLog("[tunnel] No network connection.")
-                self.connectState = .disConnected
-                return
-            }
-            var serverTestLists:[SeverModel] = []
-            if self.choiceServerIndex == 0 {
-                serverTestLists = serverLists
-            }
-            else{
-                serverTestLists = [serverLists[self.choiceServerIndex - 1]]
-            }
-            SpeedTestManager.shareInstance.testServerList(serverTestLists) { [weak self] serversSorted in
-                if serversSorted.count > 0 {
-                    self?.serverRandom = serversSorted[Int(arc4random()) % serversSorted.count]
-                    if isInForeGround {
-                        ConnectManager.shareInstance.connectServer(self!.serverRandom!)
-                    }
-                    else{
-                        ShowLog("enter background, cannot connect ")
-                        self?.connectState = .disConnected
-                    }
+        GadInterstitialLoader.shared.requesAdOf(.connectAD, completeHandler: nil)
+        DispatchQueue.main.async {
+            ConnectManager.shareInstance.setupServerProvider {
+                if self.connectState != .connecting{
+                    self.connectState = .connecting
+                }
+                let netContent = try! Reachability()
+                if netContent.connection == .unavailable {
+                    ZKProgressHUD.showInfo("No network connection.")
+                    ShowLog("[tunnel] No network connection.")
+                    self.connectState = .disConnected
+                    return
+                }
+                var serverTestLists:[SeverModel] = []
+                if self.choiceServerIndex == 0 {
+                    serverTestLists = serverLists
                 }
                 else{
-                    self?.connectState = .disConnected
-                    ZKProgressHUD.showInfo("Connection failed. Try again.")
+                    serverTestLists = [serverLists[self.choiceServerIndex - 1]]
+                }
+                SpeedTestManager.shareInstance.testServerList(serverTestLists) { [weak self] serversSorted in
+                    if serversSorted.count > 0 {
+                        self?.serverRandom = serversSorted[Int(arc4random()) % serversSorted.count]
+                        if isInForeGround {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + Double(arc4random()%5)/2.0) {
+                                ConnectManager.shareInstance.connectServer(self!.serverRandom!)
+                            }
+                        }
+                        else{
+                            ShowLog("enter background, cannot connect ")
+                            self?.connectState = .disConnected
+                        }
+                    }
+                    else{
+                        self?.connectState = .disConnected
+                        self?.showConnectAD()
+                        ZKProgressHUD.showInfo("Connection failed. Try again.")
+                    }
+                    
                 }
             }
         }
+        
     }
     
     private func disconnectServer(){
@@ -237,7 +275,7 @@ class MainPageViewController:UIViewController{
                 if !self.isServerListsBackReconnect {
                     if ConnectManager.shareInstance.hasConnectFirst{
                         self.connectState = .disConnected
-                        self.showResultVC(false)
+                        self.showConnectAD(true)
                     }
                     else{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -251,13 +289,14 @@ class MainPageViewController:UIViewController{
                 }
             case .connected:
                 self.connectState = .connected
-                showResultVC()
+                self.showConnectAD(true)
                 
             case .noNetwork:
                 self.connectState = .disConnected
                 ZKProgressHUD.showInfo("No network connection.")
             case .error:
                 self.connectState = .disConnected
+                self.showConnectAD()
                 ZKProgressHUD.showInfo("Connection failed. Try again.")
             
             default:
@@ -433,11 +472,12 @@ class MainPageViewController:UIViewController{
     }
     
     //跳转结果页
-    private func showResultVC(_ isSuccess:Bool = true){
+    func showResultVC(){
+        if !isToResultVC {return}
         let vc = MainStoryBoard.instantiateViewController(withIdentifier: "ResultPageViewController") as! ResultPageViewController
-        vc.isSuccess = isSuccess
+        vc.connectState = connectState
         vc.clickHandle = { [weak self] in
-            if isSuccess{
+            if self?.connectState == .connected{
                 self?.choiceCountry()
             }
             else{

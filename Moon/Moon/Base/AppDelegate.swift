@@ -7,11 +7,10 @@
 
 import UIKit
 //import FBSDKCoreKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -21,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        Settings.shared.isAdvertiserIDCollectionEnabled = true
 //        Settings.shared.isCodelessDebugLogEnabled = false
         
-//        FirebaseApp.configure()
+        FirebaseApp.configure()
         return true
     }
 

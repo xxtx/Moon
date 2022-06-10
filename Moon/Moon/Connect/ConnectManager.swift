@@ -165,7 +165,7 @@ class ConnectManager: NSObject {
         self.providerManager?.loadFromPreferences { error in
             guard error == nil else {
                 ShowLog("[tunnel] load error: \(error?.localizedDescription ?? "")")
-                self.connectStateChangeHandle?(.noNetwork)
+                self.connectStateChangeHandle?(.error)
                 return
             }
             do {
@@ -173,7 +173,7 @@ class ConnectManager: NSObject {
                 ShowLog("[tunnel] host : \(server.serverHost)")
             } catch let e {
                 ShowLog("[tunnel] connect error: \(e.localizedDescription)")
-                self.connectStateChangeHandle?(.noNetwork)
+                self.connectStateChangeHandle?(.error)
             }
         }
     }

@@ -42,6 +42,7 @@
 		464261AE2852110000982E34 /* admobConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 464261AD2852110000982E34 /* admobConfig.json */; };
 		464261B02853135500982E34 /* MainPageViewController+AD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464261AF2853135500982E34 /* MainPageViewController+AD.swift */; };
 		464261B2285340AE00982E34 /* 匹配中.json in Resources */ = {isa = PBXBuildFile; fileRef = 464261B1285340AE00982E34 /* 匹配中.json */; };
+		464261CC285836F800982E34 /* GoogleFBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464261CB285836F800982E34 /* GoogleFBUtil.swift */; };
 		465DE83628449B860001EB48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465DE83528449B860001EB48 /* AppDelegate.swift */; };
 		465DE83828449B860001EB48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465DE83728449B860001EB48 /* SceneDelegate.swift */; };
 		465DE83D28449B860001EB48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465DE83B28449B860001EB48 /* Main.storyboard */; };
@@ -133,6 +134,7 @@
 		464261AD2852110000982E34 /* admobConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = admobConfig.json; sourceTree = "<group>"; };
 		464261AF2853135500982E34 /* MainPageViewController+AD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainPageViewController+AD.swift"; sourceTree = "<group>"; };
 		464261B1285340AE00982E34 /* 匹配中.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "匹配中.json"; sourceTree = "<group>"; };
+		464261CB285836F800982E34 /* GoogleFBUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleFBUtil.swift; sourceTree = "<group>"; };
 		465DE83228449B860001EB48 /* Moon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		465DE83528449B860001EB48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		465DE83728449B860001EB48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				465DE84328449B880001EB48 /* Info.plist */,
 				460F22052844A249006099D8 /* BaseNavigationController.swift */,
 				460F22072845BAEA006099D8 /* BaseProperty.swift */,
+				464261CB285836F800982E34 /* GoogleFBUtil.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				460F22042844A13E006099D8 /* LaunchViewController.swift in Sources */,
 				462FFD0F2848989500AFBEC3 /* ServerlistViewController.swift in Sources */,
 				460F22172847617C006099D8 /* SpeedTestManager.swift in Sources */,
+				464261CC285836F800982E34 /* GoogleFBUtil.swift in Sources */,
 				462FFD11284898CC00AFBEC3 /* RullsViewController.swift in Sources */,
 				462F300C28509E9B00D80599 /* ResultADView.swift in Sources */,
 				460F22102847439F006099D8 /* ResultPageViewController.swift in Sources */,

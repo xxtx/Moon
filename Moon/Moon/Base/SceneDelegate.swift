@@ -42,7 +42,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         isInForeGround = true
         if isHotIn {
+            GoogleFBLog.logEvent(.Fc)
             window?.rootViewController = MainStoryBoard.instantiateViewController(withIdentifier: "LaunchViewController")
+        }
+        else{
+            GoogleFBLog.logEvent(.Fb)
         }
     }
 

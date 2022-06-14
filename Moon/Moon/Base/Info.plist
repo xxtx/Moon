@@ -5,9 +5,9 @@
 	<key>FacebookDisplayName</key>
 	<string>Moon</string>
 	<key>FacebookClientToken</key>
-	<string></string>
+	<string>f4cb699f2343b2e767c0753e0733aa0d</string>
 	<key>FacebookAppID</key>
-	<string></string>
+	<string>372253591451243</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>Your data will be used in displaying personalized advertisements.</string>
 	<key>GADApplicationIdentifier</key>

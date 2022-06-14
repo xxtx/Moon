@@ -120,7 +120,7 @@ class ConnectManager: NSObject {
                 return
             }
             if self.hasNetworkProvider == false{
-//                MainFBLog.logEvent(.smartAthA)
+                GoogleFBLog.logEvent(.H2)
                 self.hasConnectFirst = false
             }
             
@@ -142,7 +142,7 @@ class ConnectManager: NSObject {
                     return
                 }
                 if self.hasNetworkProvider == false{
-//                    MainFBLog.logEvent(.smartAthB)
+                    GoogleFBLog.logEvent(.H3)
                 }
                 self.hasNetworkProvider = true
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {

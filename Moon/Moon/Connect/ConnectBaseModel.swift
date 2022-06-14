@@ -11,11 +11,10 @@ import Foundation
 var isInConnectSetting = false
 
 //tunnel 本地配置
-var serverLists = [SeverModel(serverIcon: "america", serverCountry: "New York", serverHost: "79.133.110.34"),
-                     SeverModel(serverIcon: "america", serverCountry: "Chicago", serverHost: "92.38.176.83"),
-                    SeverModel(serverIcon: "england", serverCountry: "London", serverHost: "45.10.58.187"),
-                    SeverModel(serverIcon: "countryerror", serverCountry: "error country", serverHost: " ")]
-
+var serverLists = [
+    SeverModel(serverIcon: "england", serverCountry: "London", serverHost: "45.10.58.187"),
+    SeverModel(serverIcon: "america", serverCountry: "New York", serverHost: "79.133.110.34"),
+    SeverModel(serverIcon: "america", serverCountry: "Chicago", serverHost: "92.38.176.83")]
 
 class SeverModel:Codable {
     var serverIcon: String = ""
@@ -44,3 +43,26 @@ enum ConnectState {
     case error
     case noNetwork
 }
+
+/*
+[
+    {
+        "serverCountry":"New York",
+        "serverIcon":"america",
+        "serverHost":"79.133.110.34",
+        "serverSpeed":9999
+    },
+    {
+        "serverCountry":"Chicago",
+        "serverIcon":"america",
+        "serverHost":"92.38.176.83",
+        "serverSpeed":9999
+    },
+    {
+        "serverCountry":"London",
+        "serverIcon":"england",
+        "serverHost":"45.10.58.187",
+        "serverSpeed":9999
+    }
+]
+ */

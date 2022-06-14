@@ -37,6 +37,7 @@ class ServerlistViewController:UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func backClick(){
+        GoogleFBLog.logEvent(.S2)
         self.navigationController?.popViewController(animated: true)
         NotificationCenter.default.post(name: notiNameShowBackAD, object: nil)
     }

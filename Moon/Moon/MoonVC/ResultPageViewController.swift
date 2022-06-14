@@ -36,12 +36,14 @@ class ResultPageViewController:UIViewController, GADNativeAdDelegate{
             stateLab.text = "Connected Successful!"
             descLab.text = "Real-time internet speed monitoring is enabled"
             connectBtn.setTitle("Select new servers", for: .normal)
+            GoogleFBLog.logEvent(.H4)
         }
         else{
             stateImg.image = UIImage(named: "disconnectedLight")
             stateLab.text = "Disconnected"
             descLab.text = ""
             connectBtn.setTitle("Connect again", for: .normal)
+            GoogleFBLog.logEvent(.Q)
         }
     }
     

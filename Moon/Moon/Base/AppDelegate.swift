@@ -6,21 +6,31 @@
 //
 
 import UIKit
-//import FBSDKCoreKit
+import FBSDKCoreKit
 import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-//        ApplicationDelegate.shared.application(application,didFinishLaunchingWithOptions: launchOptions)
-//        Settings.shared.isAdvertiserTrackingEnabled = true
-//        Settings.shared.isAutoLogAppEventsEnabled = true
-//        Settings.shared.isAdvertiserIDCollectionEnabled = true
-//        Settings.shared.isCodelessDebugLogEnabled = false
-        
+#if DEBUG
+#else
+        ApplicationDelegate.shared.application(application,didFinishLaunchingWithOptions: launchOptions)
+        Settings.shared.isAdvertiserTrackingEnabled = true
+        Settings.shared.isAutoLogAppEventsEnabled = true
+        Settings.shared.isAdvertiserIDCollectionEnabled = true
+        Settings.shared.isCodelessDebugLogEnabled = false
+        GoogleFBRemoteManager.shared.requestRemoteConfig()
+#endif
         FirebaseApp.configure()
+        
+        if UserDefaults.standard.value(forKey: "resource") == nil {
+            if let country = Locale.current.regionCode {
+                UserDefaults.standard.set(true, forKey: "resource")
+                GoogleFBLog.setProperty(country, for: "br")
+                GoogleFBLog.logEvent(.Fa)
+            }
+        }
         return true
     }
 

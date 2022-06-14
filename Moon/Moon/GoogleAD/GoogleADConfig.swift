@@ -10,7 +10,6 @@ import GoogleMobileAds
 
 let KeyOfShowClickCounts = "userShowClickCounts"        //用户广告展示点击次数缓存
 let KeyOfUserMalignant = "isUserMalignant"              //恶意用户开始时间
-let KeyOfFBAdConfig = "firbaseremoteAdConfig"           //远程广告配置
 let notiNameCloseAllAD = Notification.Name(rawValue: "closeADForce")
 let notiNameShowBackAD = Notification.Name(rawValue: "ShowBackAD")
 
@@ -77,7 +76,7 @@ class GoogleADManager: NSObject {
         super.init()
         
         var configStr64 = ""
-        if let adconfig = UserDefaults.standard.value(forKey: KeyOfFBAdConfig) as? String{
+        if let adconfig = UserDefaults.standard.value(forKey: KEYRemoteAdConfig) as? String{
             configStr64 = adconfig
         }
         else{
@@ -88,11 +87,11 @@ class GoogleADManager: NSObject {
         let data = Data(base64Encoded: configStr64)
         if let adConfig = try? JSONDecoder().decode(GadConfigModel.self, from: data ?? Data()){
             admobConfig = adConfig
-            admobConfig!.arrHomeADConfig = admobConfig!.arrHomeADConfig.sorted(by: { return $0.adOrder > $1.adOrder })
-            admobConfig!.arrResultADConfig = admobConfig!.arrResultADConfig.sorted(by: { return $0.adOrder > $1.adOrder })
-            admobConfig!.arrConnectADConfig = admobConfig!.arrConnectADConfig.sorted(by: { return $0.adOrder > $1.adOrder })
-            admobConfig!.arrLoadingADConfig = admobConfig!.arrLoadingADConfig.sorted(by: { return $0.adOrder > $1.adOrder })
-            admobConfig!.arrBackHomeADConfig = admobConfig!.arrBackHomeADConfig.sorted(by: { return $0.adOrder > $1.adOrder })
+            admobConfig!.arrLoadingADConfig = admobConfig!.arrLoadingADConfig.sorted(by: { return $0.adOrder < $1.adOrder })
+            admobConfig!.arrHomeADConfig = admobConfig!.arrHomeADConfig.sorted(by: { return $0.adOrder < $1.adOrder })
+            admobConfig!.arrResultADConfig = admobConfig!.arrResultADConfig.sorted(by: { return $0.adOrder < $1.adOrder })
+            admobConfig!.arrConnectADConfig = admobConfig!.arrConnectADConfig.sorted(by: { return $0.adOrder < $1.adOrder })
+            admobConfig!.arrBackHomeADConfig = admobConfig!.arrBackHomeADConfig.sorted(by: { return $0.adOrder < $1.adOrder })
             ShowLog("adConfig ~~~~ limitShow:\(admobConfig!.dayShowLimits), limitClick:\(admobConfig!.dayShowLimits)")
         }
         else{
@@ -138,7 +137,9 @@ class GoogleADManager: NSObject {
                 ShowLog("异常点击用户")
                 isIndengerTime = true
             }
-            UserDefaults.standard.removeObject(forKey: KeyOfUserMalignant)
+            else{
+                UserDefaults.standard.removeObject(forKey: KeyOfUserMalignant)
+            }
         }
         
         if !isIndengerTime, adUserLocalCounts!.hasShowCounts < admobConfig!.dayShowLimits, adUserLocalCounts!.hasClickCounts < admobConfig!.dayClickLimits{
@@ -187,3 +188,54 @@ class GoogleADManager: NSObject {
         }
     }
 }
+
+
+//ca-app-pub-6062348563656176~3715280853
+
+//{
+//  "dayShowLimits":30,
+//  "dayClickLimits":5,
+//  "arrLoadingADConfig":[
+//    {
+//      "adOrder":1,
+//      "adIdentifier":"ca-app-pub-6062348563656176/2439510599"
+//    },
+//    {
+//      "adOrder":2,
+//      "adIdentifier":"ca-app-pub-6062348563656176/2783388850"
+//    }
+//  ],
+//  "arrHomeADConfig":[
+//    {
+//      "adOrder":1,
+//      "adIdentifier":"ca-app-pub-6062348563656176/1170924283"
+//    },
+//    {
+//      "adOrder":2,
+//      "adIdentifier":"ca-app-pub-6062348563656176/3904898835"
+//    }
+//  ],
+//  "arrConnectADConfig":[
+//    {
+//      "adOrder":1,
+//      "adIdentifier":"ca-app-pub-6062348563656176/7652572154"
+//    },
+//    {
+//      "adOrder":2,
+//      "adIdentifier":"ca-app-pub-6062348563656176/3713327147"
+//    }
+//  ],
+//  "arrResultADConfig":[
+//    {
+//      "adOrder":1,
+//      "adIdentifier":"ca-app-pub-6062348563656176/8774082134"
+//    },
+//    {
+//      "adOrder":2,
+//      "adIdentifier":"ca-app-pub-6062348563656176/6147918796"
+//    }
+//  ],
+//
+//  "arrBackHomeADConfig":[
+//  ]
+//}

@@ -22,13 +22,13 @@ class SpeedTestManager:NSObject{
             dispatchGroup.enter()
             PingManager.shared().queueCount += 1
             dispatchQueue.async {
-//                MainFBLog.logEvent(.smartPA, ["tunnel":server.serverHost])
+                GoogleFBLog.logEvent(.MD, ["moon": server.serverHost])
                 testDictionaryTemp[index] = PingManager.startPingHost(server.serverHost, count: 3, pingRedultCallback: { pingItem in
                     switch pingItem.status {
                     case start:
                         break
                     case receivePacket:
-//                        MainFBLog.logEvent(.smartPB, ["tunnel":server.serverHost])
+                        GoogleFBLog.logEvent(.ME, ["moon": server.serverHost])
                         testResults[index]?.append(pingItem.singleTime)
                         dispatchGroup.leave()
                         PingManager.shared().queueCount -= 1

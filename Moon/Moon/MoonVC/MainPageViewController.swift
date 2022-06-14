@@ -114,6 +114,13 @@ class MainPageViewController:UIViewController{
         let tap2 = UITapGestureRecognizer.init(target: self, action: #selector(closeSettingView))
         settingCoverView.addGestureRecognizer(tap2)
         
+        //检查远程服务器配置
+        if let serverStr64 = UserDefaults.standard.value(forKey: KEYRemoteServerConfig) as? String{
+            let data = Data(base64Encoded: serverStr64)
+            if let serverConfig = try? JSONDecoder().decode([SeverModel].self, from: data ?? Data()){
+                serverLists = serverConfig
+            }
+        }
         ConnectManager.shareInstance.loadProviderConfiguration { tunnelStatus in
             if tunnelStatus == .connected{
                 self.connectState = .connected
@@ -146,10 +153,15 @@ class MainPageViewController:UIViewController{
         if connectState == .connected{
             changeSpeedByte(true)
         }
-        GadInterstitialLoader.shared.requesAdOf(.connectAD, completeHandler: nil)
-        GadNativeLoader.shared.requesAdOf(.homeAD, completeHandler: nil)
-        GadNativeLoader.shared.requesAdOf(.resultAD, completeHandler: nil)
-        self.requstHomeAD()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if self.viewIfLoaded?.window != nil {
+                GoogleFBLog.logEvent(.S1)
+                GadInterstitialLoader.shared.requesAdOf(.connectAD, completeHandler: nil)
+                GadNativeLoader.shared.requesAdOf(.homeAD, completeHandler: nil)
+                GadNativeLoader.shared.requesAdOf(.resultAD, completeHandler: nil)
+                self.requstHomeAD()
+            }
+        }
     }
     
     @objc func choiceCountry(){
@@ -199,6 +211,7 @@ class MainPageViewController:UIViewController{
         case .waitConnect, .disConnected, .error, .noNetwork:
             connectServer()
         case .connected:
+            GoogleFBLog.logEvent(.D)
             disconnectServer()
         default:
             break
@@ -223,6 +236,7 @@ class MainPageViewController:UIViewController{
                     self.connectState = .disConnected
                     return
                 }
+                GoogleFBLog.logEvent(.MA)
                 var serverTestLists:[SeverModel] = []
                 if self.choiceServerIndex == 0 {
                     serverTestLists = serverLists
@@ -231,6 +245,7 @@ class MainPageViewController:UIViewController{
                     serverTestLists = [serverLists[self.choiceServerIndex - 1]]
                 }
                 SpeedTestManager.shareInstance.testServerList(serverTestLists) { [weak self] serversSorted in
+                    GoogleFBLog.logEvent(.MB)
                     if serversSorted.count > 0 {
                         self?.serverRandom = serversSorted[Int(arc4random()) % serversSorted.count]
                         if isInForeGround {
@@ -257,6 +272,7 @@ class MainPageViewController:UIViewController{
     
     private func disconnectServer(){
         self.connectState = .disConnecting
+        GadInterstitialLoader.shared.requesAdOf(.connectAD, completeHandler: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if isInForeGround{
                 ConnectManager.shareInstance.disconnectServer()
@@ -289,6 +305,7 @@ class MainPageViewController:UIViewController{
                 }
             case .connected:
                 self.connectState = .connected
+                GoogleFBLog.logEvent(.MC, ["moon": serverRandom?.serverHost ?? ""])
                 self.showConnectAD(true)
                 
             case .noNetwork:

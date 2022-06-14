@@ -33,19 +33,15 @@ class GadNativeLoader: NSObject {
         var isFinishHandle = false //保证一次广告请求在规定时间内有且只有一起回调
         let dispatchTimer = DispatchSource.makeTimerSource(flags: [], queue: .main)
         dispatchTimer.setEventHandler(handler: { [weak self] in
-            switch adType{
-            case .homeAD:
-                if let ads = self?.arrMainAdLoaded, ads.count > 0{
-                    dispatchTimer.cancel()
-                    isFinishHandle = true
-                    completeHandler?(true)
-                }
-            case .resultAD:
-                if let ads = self?.arrResultAdLoaded, ads.count > 0{
-                    dispatchTimer.cancel()
-                    isFinishHandle = true
-                    completeHandler?(true)
-                }
+            if adType == .homeAD, let ads = self?.arrMainAdLoaded, ads.count > 0{
+                dispatchTimer.cancel()
+                isFinishHandle = true
+                completeHandler?(true)
+            }
+            else if adType == .resultAD, let ads = self?.arrResultAdLoaded, ads.count > 0{
+                dispatchTimer.cancel()
+                isFinishHandle = true
+                completeHandler?(true)
             }
         })
         dispatchTimer.schedule(deadline: .now(), repeating: 2)
@@ -65,10 +61,10 @@ class GadNativeLoader: NSObject {
         ShowLog("开始检测缓存地广告是否超时未使用 main:\(arrMainAdLoaded.count) result:\(arrResultAdLoaded.count)")
         let now = Date().timeIntervalSince1970
         arrMainAdLoaded = arrMainAdLoaded.filter({ admobad in
-            return now - TimeInterval(admobad.creatTime) < 3000
+            return now - TimeInterval(admobad.creatTime) <= 2999
         })
         arrResultAdLoaded = arrResultAdLoaded.filter({ admobad in
-            return now - TimeInterval(admobad.creatTime) < 3000
+            return now - TimeInterval(admobad.creatTime) <= 2999
         })
         ShowLog("检测缓存地广告是否超时未使用完毕 main:\(arrMainAdLoaded.count) result:\(arrResultAdLoaded.count)")
     }
@@ -81,8 +77,7 @@ class GadNativeLoader: NSObject {
         }
         
         var currAdConfig:[GadConfigItemModel] = []
-        switch adType {
-        case .homeAD:
+        if adType == .homeAD{
             if arrMainAdLoaded.count > 0 {
                 ShowLog("\(adType.rawValue) 广告 有缓存")
                 completeHandler?(true)
@@ -92,9 +87,10 @@ class GadNativeLoader: NSObject {
                 checkNativeAdOf(adType, completeHandler: completeHandler)
                 return
             }
-            currAdConfig = GoogleADManager.shared.admobConfig?.arrHomeADConfig ?? []
             isHomeAdLoading = true
-        case .resultAD:
+            currAdConfig = GoogleADManager.shared.admobConfig?.arrHomeADConfig ?? []
+        }
+        else if adType == .resultAD{
             if arrResultAdLoaded.count > 0 {
                 ShowLog("\(adType.rawValue) 广告 有缓存")
                 completeHandler?(true)
@@ -104,8 +100,8 @@ class GadNativeLoader: NSObject {
                 checkNativeAdOf(adType, completeHandler: completeHandler)
                 return
             }
-            currAdConfig = GoogleADManager.shared.admobConfig?.arrResultADConfig ?? []
             isResultAdLoading = true
+            currAdConfig = GoogleADManager.shared.admobConfig?.arrResultADConfig ?? []
         }
         
         //广告加载流程
@@ -119,13 +115,13 @@ class GadNativeLoader: NSObject {
         }
         
         let loader = AdNativeLoader.init(adType, currAdConfig: currAdConfig) {[weak self] isSuccess, adLoaded in
-            switch adType {
-            case .homeAD:
+            if adType == .homeAD{
                 self?.isHomeAdLoading = false
                 if isSuccess {
                     self?.arrMainAdLoaded.append(adLoaded!)
                 }
-            case .resultAD:
+            }
+            else if adType == .resultAD{
                 self?.isResultAdLoading = false
                 if isSuccess {
                     self?.arrResultAdLoaded.append(adLoaded!)
@@ -162,10 +158,11 @@ class GadNativeLoader: NSObject {
 
 class AdNativeLoader:NSObject, GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
     private var requestIndex = 0
-    private var currAdConfig:[GadConfigItemModel]? //用于获取广告地配置
     private var adType:NativeAdType!
-    private var successHandler:((_ success:Bool, _ adExa:GadNativeLoadedModel?) -> Void)?
+    private var currAdConfig:[GadConfigItemModel]? //用于获取广告地配置
     private var adLoader:GADAdLoader?
+    private var successHandler:((_ success:Bool, _ adExa:GadNativeLoadedModel?) -> Void)?
+    
      
     init(_ adType:NativeAdType, currAdConfig:[GadConfigItemModel], successHandler:((_ success:Bool, _ adLoaded:GadNativeLoadedModel?) -> Void)?) {
         super.init()
@@ -192,11 +189,11 @@ class AdNativeLoader:NSObject, GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
     //nativeAD 代理
     func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: Error) {
         ShowLog("\(adType.rawValue) 广告加载失败 \(error.localizedDescription)")
-        if requestIndex + 1 >= currAdConfig?.count ?? 0 {
+        requestIndex += 1
+        if requestIndex >= currAdConfig?.count ?? 0 {
             successHandler?(false, nil)
         }
         else{
-            requestIndex += 1
             requestNativeAdmob()
         }
     }
@@ -204,10 +201,10 @@ class AdNativeLoader:NSObject, GADAdLoaderDelegate, GADNativeAdLoaderDelegate {
     func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADNativeAd) {
         ShowLog("\(adType.rawValue) 广告加载成功")
         let ad = GadNativeLoadedModel()
-        ad.adIdentifier = currAdConfig?[requestIndex].adIdentifier
-        ad.adOrder = currAdConfig?[requestIndex].adOrder
         ad.creatTime = Date().timeIntervalSince1970
         ad.adloaded = nativeAd
+        ad.adIdentifier = currAdConfig?[requestIndex].adIdentifier
+        ad.adOrder = currAdConfig?[requestIndex].adOrder
         successHandler?(true, ad)
     }
 }

@@ -130,12 +130,6 @@ class MainPageViewController:UIViewController{
         adBGView.addSubview(self.homeAdView)
         setConnectManagerHandle()
         
-        if #available(iOS 14.0, *){
-            ATTrackingManager.requestTrackingAuthorization { state in
-                ShowLog("[AD] appTracking -- \(state.rawValue)")
-            }
-        }
-        
         NotificationCenter.default.addObserver(forName: notiNameShowBackAD, object: nil, queue: .main) {[weak self] noti in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 self?.showBackHomeAD()
@@ -160,6 +154,12 @@ class MainPageViewController:UIViewController{
                 GadNativeLoader.shared.requesAdOf(.homeAD, completeHandler: nil)
                 GadNativeLoader.shared.requesAdOf(.resultAD, completeHandler: nil)
                 self.requstHomeAD()
+            }
+        }
+        
+        if #available(iOS 14.0, *){
+            ATTrackingManager.requestTrackingAuthorization { state in
+                ShowLog("[AD] appTracking -- \(state.rawValue)")
             }
         }
     }
@@ -224,6 +224,7 @@ class MainPageViewController:UIViewController{
             self.connectState = .connecting
         }
         GadInterstitialLoader.shared.requesAdOf(.connectAD, completeHandler: nil)
+        GadNativeLoader.shared.requesAdOf(.resultAD, completeHandler: nil)
         DispatchQueue.main.async {
             ConnectManager.shareInstance.setupServerProvider {
                 if self.connectState != .connecting{

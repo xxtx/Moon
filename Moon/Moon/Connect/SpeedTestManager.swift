@@ -28,7 +28,7 @@ class SpeedTestManager:NSObject{
                     case start:
                         break
                     case receivePacket:
-                        GoogleFBLog.logEvent(.ME, ["moon": server.serverHost])
+                        GoogleFBLog.logEvent(.MC1, ["moon": server.serverHost])
                         testResults[index]?.append(pingItem.singleTime)
                         dispatchGroup.leave()
                         PingManager.shared().queueCount -= 1

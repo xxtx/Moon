@@ -34,6 +34,7 @@ class ServerlistViewController:UIViewController, UITableViewDelegate, UITableVie
         self.view.addSubview(tableView)
         
         tableView.register(serverListItem.self, forCellReuseIdentifier: "serverListItem")
+        GadInterstitialLoader.shared.requesAdOf(.backHomeAD, completeHandler: nil)
     }
     
     @objc func backClick(){

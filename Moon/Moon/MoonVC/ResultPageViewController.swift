@@ -65,11 +65,8 @@ class ResultPageViewController:UIViewController, GADNativeAdDelegate{
     }
     
     func requstResultAD(){
-        if self.viewIfLoaded?.window == nil {
-            return
-        }
         GadNativeLoader.shared.requesAdOf(.resultAD) {[weak self] isSuccess in
-            if isSuccess{
+            if isSuccess, self?.viewIfLoaded?.window != nil {
                 if let admob = GadNativeLoader.shared.arrResultAdLoaded.first{
                     self?.resultAdView.isHidden = false
                     self?.resultAdView.nativeAd = admob.adloaded

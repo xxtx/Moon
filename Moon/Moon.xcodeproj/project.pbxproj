@@ -43,6 +43,7 @@
 		464261B02853135500982E34 /* MainPageViewController+AD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464261AF2853135500982E34 /* MainPageViewController+AD.swift */; };
 		464261B2285340AE00982E34 /* 匹配中.json in Resources */ = {isa = PBXBuildFile; fileRef = 464261B1285340AE00982E34 /* 匹配中.json */; };
 		464261CC285836F800982E34 /* GoogleFBUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464261CB285836F800982E34 /* GoogleFBUtil.swift */; };
+		464261CE28588F5D00982E34 /* disconnectingAni.json in Resources */ = {isa = PBXBuildFile; fileRef = 464261CD28588F5D00982E34 /* disconnectingAni.json */; };
 		465DE83628449B860001EB48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465DE83528449B860001EB48 /* AppDelegate.swift */; };
 		465DE83828449B860001EB48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465DE83728449B860001EB48 /* SceneDelegate.swift */; };
 		465DE83D28449B860001EB48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465DE83B28449B860001EB48 /* Main.storyboard */; };
@@ -98,7 +99,6 @@
 		460F220928461C51006099D8 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		460F220B28471549006099D8 /* connectingAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = connectingAni.json; sourceTree = "<group>"; };
 		460F220F2847439F006099D8 /* ResultPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPageViewController.swift; sourceTree = "<group>"; };
-		460F2212284760E9006099D8 /* disconnectingAni.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = disconnectingAni.json; sourceTree = "<group>"; };
 		460F221428476145006099D8 /* ConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectManager.swift; sourceTree = "<group>"; };
 		460F22162847617C006099D8 /* SpeedTestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedTestManager.swift; sourceTree = "<group>"; };
 		460F22182847663D006099D8 /* Moon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moon-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -135,6 +135,7 @@
 		464261AF2853135500982E34 /* MainPageViewController+AD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainPageViewController+AD.swift"; sourceTree = "<group>"; };
 		464261B1285340AE00982E34 /* 匹配中.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "匹配中.json"; sourceTree = "<group>"; };
 		464261CB285836F800982E34 /* GoogleFBUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleFBUtil.swift; sourceTree = "<group>"; };
+		464261CD28588F5D00982E34 /* disconnectingAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = disconnectingAni.json; sourceTree = "<group>"; };
 		465DE83228449B860001EB48 /* Moon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		465DE83528449B860001EB48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		465DE83728449B860001EB48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,9 +192,9 @@
 			children = (
 				465DE83E28449B880001EB48 /* Assets.xcassets */,
 				469D92D028507F7300CB88E6 /* GoogleService-Info.plist */,
-				464261B1285340AE00982E34 /* 匹配中.json */,
 				464261AD2852110000982E34 /* admobConfig.json */,
-				460F2212284760E9006099D8 /* disconnectingAni.json */,
+				464261B1285340AE00982E34 /* 匹配中.json */,
+				464261CD28588F5D00982E34 /* disconnectingAni.json */,
 				460F220B28471549006099D8 /* connectingAni.json */,
 				462FFD122848C0C800AFBEC3 /* downloadAni.json */,
 				462FFD142848C0D500AFBEC3 /* uploadAni.json */,
@@ -423,6 +424,7 @@
 				465DE83F28449B880001EB48 /* Assets.xcassets in Resources */,
 				465DE83D28449B860001EB48 /* Main.storyboard in Resources */,
 				462FFD152848C0D500AFBEC3 /* uploadAni.json in Resources */,
+				464261CE28588F5D00982E34 /* disconnectingAni.json in Resources */,
 				464261B2285340AE00982E34 /* 匹配中.json in Resources */,
 				462FFD132848C0C800AFBEC3 /* downloadAni.json in Resources */,
 				464261AE2852110000982E34 /* admobConfig.json in Resources */,
@@ -771,6 +773,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moon/Base/Info.plist;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used in displaying personalized advertisements.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -783,7 +786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zytest.moonios.Moon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -813,6 +816,7 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Moon/Base/Info.plist;
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used in displaying personalized advertisements.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -825,7 +829,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zytest.moonios.Moon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

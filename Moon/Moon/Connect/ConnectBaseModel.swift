@@ -14,6 +14,7 @@ var isInConnectSetting = false
 var serverLists = [
     SeverModel(serverIcon: "england", serverCountry: "London", serverHost: "45.10.58.187"),
     SeverModel(serverIcon: "america", serverCountry: "New York", serverHost: "79.133.110.34"),
+    SeverModel(serverIcon: "japan", serverCountry: "japan", serverHost: "1.2.3.4"),
     SeverModel(serverIcon: "america", serverCountry: "Chicago", serverHost: "92.38.176.83")]
 
 class SeverModel:Codable {

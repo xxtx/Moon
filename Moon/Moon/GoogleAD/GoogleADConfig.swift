@@ -92,10 +92,10 @@ class GoogleADManager: NSObject {
             admobConfig!.arrResultADConfig = admobConfig!.arrResultADConfig.sorted(by: { return $0.adOrder < $1.adOrder })
             admobConfig!.arrConnectADConfig = admobConfig!.arrConnectADConfig.sorted(by: { return $0.adOrder < $1.adOrder })
             admobConfig!.arrBackHomeADConfig = admobConfig!.arrBackHomeADConfig.sorted(by: { return $0.adOrder < $1.adOrder })
-            ShowLog("adConfig ~~~~ limitShow:\(admobConfig!.dayShowLimits), limitClick:\(admobConfig!.dayShowLimits)")
+            ShowLog("[AD] adConfig ~~~~ limitShow:\(admobConfig!.dayShowLimits), limitClick:\(admobConfig!.dayShowLimits)")
         }
         else{
-            ShowLog("adConfig ~~~~ 获取失败")
+            ShowLog("[AD] adConfig ~~~~ 获取失败")
         }
         
         getUserOperationData()
@@ -106,13 +106,13 @@ class GoogleADManager: NSObject {
     func addUserShowCount() {
         adUserLocalCounts!.hasShowCounts += 1
         saveUserOperationLocal()
-        ShowLog(" 广告展示 \(adUserLocalCounts!.hasShowCounts) 次")
+        ShowLog("[AD]  广告展示 \(adUserLocalCounts!.hasShowCounts) 次")
     }
     
     func addUserClickCount(){
         adUserLocalCounts!.hasClickCounts += 1
         saveUserOperationLocal()
-        ShowLog(" 广告点击 \(adUserLocalCounts!.hasClickCounts) 次")
+        ShowLog("[AD]  广告点击 \(adUserLocalCounts!.hasClickCounts) 次")
     }
     
     
@@ -120,21 +120,21 @@ class GoogleADManager: NSObject {
     //广告展示点击次数检测
     func isUserCanShowAd() -> Bool {
         if admobConfig == nil || admobConfig?.dayShowLimits == 0 {
-            ShowLog("广告无配置文件")
+            ShowLog("[AD] 广告无配置文件")
             return false
         }
         
         if adUserLocalCounts!.hasShowCounts >= admobConfig!.dayShowLimits {
-            ShowLog("总展示次数上限")
+            ShowLog("[AD] 总展示次数上限")
         }
         if adUserLocalCounts!.hasClickCounts >= admobConfig!.dayClickLimits {
-            ShowLog("总点击次数上限")
+            ShowLog("[AD] 总点击次数上限")
         }
         
         var isIndengerTime = false
         if let abnormalTime = UserDefaults.standard.value(forKey: KeyOfUserMalignant) as? TimeInterval {
             if Date().timeIntervalSince1970 - abnormalTime < 48 * 60 * 60 {
-                ShowLog("异常点击用户")
+                ShowLog("[AD] 异常点击用户")
                 isIndengerTime = true
             }
             else{
@@ -184,7 +184,7 @@ class GoogleADManager: NSObject {
             let data = try JSONEncoder().encode(adUserLocalCounts)
             UserDefaults.standard.setValue(data, forKey: KeyOfShowClickCounts)
         } catch let e {
-            ShowLog("用户广告展示点击存储失败 \(e.localizedDescription)")
+            ShowLog("[AD] 用户广告展示点击存储失败 \(e.localizedDescription)")
         }
     }
 }

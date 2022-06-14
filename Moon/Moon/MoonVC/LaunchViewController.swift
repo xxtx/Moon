@@ -61,9 +61,13 @@ class LaunchViewController:UIViewController {
         GadInterstitialLoader.shared.requesAdOf(.loadingAD, completeHandler: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.3) {
             GadInterstitialLoader.shared.checkInterstitialAdOf(.loadingAD) { isSuccess in
-                self.launchInTime(1.1)
+                var timeI:TimeInterval = 1.1
+                if !isSuccess{
+                    timeI = Double(arc4random()%5) + 1.1
+                }
+                self.launchInTime(timeI)
                 if isSuccess{
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + timeI - 0.1) {
                         self.showLoadingAD()
                     }
                 }

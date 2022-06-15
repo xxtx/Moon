@@ -104,7 +104,6 @@ extension MainPageViewController: GADFullScreenContentDelegate, GADNativeAdDeleg
                     ShowLog("[AD] \(NativeAdType.homeAD) 广告展示 ID:\(admob.adIdentifier ?? ""), level:\(admob.adIdentifier ?? "")")
                     GadNativeLoader.shared.arrMainAdLoaded.removeFirst()
                     GoogleADManager.shared.addUserShowCount()
-                    return
                 }
             }
         }

@@ -103,6 +103,11 @@ class MainPageViewController:UIViewController{
     
     var mainhomeAdShowTime:TimeInterval?
     lazy var homeAdView = HomeADView.init(frame: CGRect(x: 0, y: 0, width: SCREENW - 40, height: 68))
+    lazy var coverAdView:UIView = {
+        let coverV = UIView(frame: CGRect(x: 0, y: 0, width: SCREENW - 140, height: 68))
+        coverV.backgroundColor = .clear
+        return coverV
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,6 +133,7 @@ class MainPageViewController:UIViewController{
         }
         
         adBGView.addSubview(self.homeAdView)
+        adBGView.addSubview(self.coverAdView)
         setConnectManagerHandle()
         
         NotificationCenter.default.addObserver(forName: notiNameShowBackAD, object: nil, queue: .main) {[weak self] noti in

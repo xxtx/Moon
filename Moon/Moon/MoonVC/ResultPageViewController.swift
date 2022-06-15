@@ -24,12 +24,17 @@ class ResultPageViewController:UIViewController, GADNativeAdDelegate{
     @IBOutlet weak var adBGView:UIView!
     
     lazy var resultAdView = ResultADView.init(frame: CGRect(x: 0, y: 0, width: SCREENW - 40, height: (SCREENW - 40)*310/335))
+    lazy var coverAdView:UIView = {
+        let coverV = UIView(frame: CGRect(x: 0, y: 0, width: SCREENW - 40, height: (SCREENW - 40)*310/335 - 65))
+        coverV.backgroundColor = .clear
+        return coverV
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         adBGView.addSubview(resultAdView)
-        
+        adBGView.addSubview(coverAdView)
         
         if connectState == .connected {
             stateImg.image = UIImage(named: "connectedLight")
